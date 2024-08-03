@@ -1,0 +1,37 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "absenq_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "Android",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554",
+        },
+        {
+            "name": "Iphone 15 Pro Max",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "7146B16D-870B-4CB3-AB5C-0ED7EADE9B19",
+        },
+        {
+            "name": "absenq_app (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "All Devices",
+            "configurations": ["Android", "Iphone 15 Pro Max"]
+        }
+    ]
+}

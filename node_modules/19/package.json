@@ -1,0 +1,24 @@
+{
+  "name": "19",
+  "version": "0.0.0",
+  "description": "A kind of dom utility is planned",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kt3k/19.git"
+  },
+  "keywords": [
+    "19",
+    "dom",
+    "html"
+  ],
+  "author": "Yoshiya Hinosawa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kt3k/19/issues"
+  },
+  "homepage": "https://github.com/kt3k/19#readme"
+}

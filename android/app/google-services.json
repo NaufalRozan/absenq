@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "151725721709",
+    "project_id": "absenq-9f09c",
+    "storage_bucket": "absenq-9f09c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151725721709:android:de584fc10736af061d9764",
+        "android_client_info": {
+          "package_name": "com.example.absenq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQbZZQBTvtJVd_bX_iZxDHF-oIY15rtb4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
