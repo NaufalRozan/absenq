@@ -4,7 +4,7 @@ import 'package:absenq/presentation/home/widgets/history_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:calendar_timeline_sbk/calendar_timeline.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 import '../../../core/core.dart';
 
@@ -16,15 +16,19 @@ class HistoryPage extends StatefulWidget {
 }
 
 class _HistoryPageState extends State<HistoryPage> {
+  late DateTime _selectedDay;
+  late DateTime _focusedDay;
+
   @override
   void initState() {
-    //current date format yyyy-MM-dd used intl package
-    final currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
-    //get attendance by date
-    context
-        .read<GetAttendanceByDateBloc>()
-        .add(GetAttendanceByDateEvent.getAttendanceByDate(currentDate));
     super.initState();
+    _focusedDay = DateTime.now();
+    _selectedDay = _focusedDay;
+
+    //current date format yyyy-MM-dd used intl package
+    final currentDate = DateFormat('yyyy-MM-dd').format(_selectedDay);
+    //get attendance by date
+    context.read<GetAttendanceByDateBloc>().add(GetAttendanceByDateEvent.getAttendanceByDate(currentDate));
   }
 
   @override
@@ -36,23 +40,37 @@ class _HistoryPageState extends State<HistoryPage> {
       body: ListView(
         padding: const EdgeInsets.all(18.0),
         children: [
-          CalendarTimeline(
-            initialDate: DateTime.now(),
-            firstDate: DateTime(2019, 1, 15),
-            lastDate: DateTime.now().add(const Duration(days: 7)),
-            onDateSelected: (date) {
-              final selectedDate = DateFormat('yyyy-MM-dd').format(date);
-
+          TableCalendar(
+            firstDay: DateTime(2019, 1, 15),
+            lastDay: DateTime.now().add(const Duration(days: 7)),
+            focusedDay: _focusedDay,
+            selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+            onDaySelected: (selectedDay, focusedDay) {
+              setState(() {
+                _selectedDay = selectedDay;
+                _focusedDay = focusedDay;
+              });
+              final selectedDate = DateFormat('yyyy-MM-dd').format(selectedDay);
               context.read<GetAttendanceByDateBloc>().add(
-                    GetAttendanceByDateEvent.getAttendanceByDate(selectedDate),
-                  );
+                GetAttendanceByDateEvent.getAttendanceByDate(selectedDate),
+              );
             },
-            leftMargin: 20,
-            monthColor: AppColors.grey,
-            dayColor: AppColors.black,
-            activeDayColor: Colors.white,
-            activeBackgroundDayColor: AppColors.primary,
-            showYears: true,
+            calendarStyle: CalendarStyle(
+              todayDecoration: BoxDecoration(
+                color: AppColors.primary,
+                shape: BoxShape.circle,
+              ),
+              selectedDecoration: BoxDecoration(
+                color: AppColors.primary,
+                shape: BoxShape.circle,
+              ),
+              defaultTextStyle: TextStyle(color: AppColors.black),
+              weekendTextStyle: TextStyle(color: AppColors.grey),
+            ),
+            headerStyle: HeaderStyle(
+              formatButtonVisible: false,
+              titleCentered: true,
+            ),
           ),
           const SpaceHeight(45.0),
           BlocBuilder<GetAttendanceByDateBloc, GetAttendanceByDateState>(
