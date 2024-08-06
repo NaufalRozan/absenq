@@ -41,8 +41,8 @@ class _HistoryPageState extends State<HistoryPage> {
         padding: const EdgeInsets.all(18.0),
         children: [
           TableCalendar(
-            firstDay: DateTime(2019, 1, 15),
-            lastDay: DateTime.now().add(const Duration(days: 7)),
+            firstDay: DateTime(2020, 1, 1),
+            lastDay: DateTime.now().add(const Duration(days: 30)),
             focusedDay: _focusedDay,
             selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
             onDaySelected: (selectedDay, focusedDay) {
@@ -61,7 +61,7 @@ class _HistoryPageState extends State<HistoryPage> {
                 shape: BoxShape.circle,
               ),
               selectedDecoration: BoxDecoration(
-                color: AppColors.primary,
+                color: AppColors.secondary,
                 shape: BoxShape.circle,
               ),
               defaultTextStyle: TextStyle(color: AppColors.black),
